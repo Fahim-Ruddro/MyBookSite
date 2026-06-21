@@ -1,0 +1,33 @@
+{
+  "name": "book-site",
+  "version": "1.0.0",
+  "description": "Creating A site using Node.js/Express/MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fahim-Ruddro/Book-Site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Fahim-Ruddro/Book-Site/issues"
+  },
+  "homepage": "https://github.com/Fahim-Ruddro/Book-Site#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "expres": "^0.0.5",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^9.7.1"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.2",
+    "nodemon": "^3.1.14"
+  }
+}
