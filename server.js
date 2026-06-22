@@ -1,5 +1,6 @@
+// Force dotenv to load explicitly from your root folder
 if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
+    require('dotenv').config({ path: __dirname + '/.env' });
 }
 
 const express = require('express');
@@ -16,13 +17,19 @@ app.set('layout', 'layouts/layout');
 app.use(expressLayouts);
 app.use(express.static('public'));
 
-mongoose.connect(process.env.DATABASE_URL);
+// Added basic connection error handling wrapper
+mongoose.connect(process.env.DATABASE_URL)
+    .then(() => console.log('Connected to Mongoose Atlas'))
+    .catch(err => {
+        console.error('Mongoose connection failed! Verify your .env file exists in D:\\MyBookSite\\ and contains DATABASE_URL.');
+        console.error(err);
+    });
+
 const db = mongoose.connection;
 db.on('error', error => console.error(error));
-db.once('open', () => console.log('Connected to Mongoose'));
 
 app.use('/', indexRouter);
-app.use('/authors', indexRouter);
+app.use('/authors', authorRouter); // <-- Fixed to use authorRouter instead of indexRouter
 
 
 const port = process.env.PORT || 3000;
